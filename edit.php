@@ -11,6 +11,7 @@ $task ->getTask($id, $user_id);
 
 if(isset($_POST['do_update'])){
 	//Create Validator Object
+
 	$validate = new Validator;
 
 	//Create Data Array
@@ -18,19 +19,19 @@ if(isset($_POST['do_update'])){
 	$data['body'] = $_POST['body'];
 	$data['category_id'] = $_POST['category'];
 	$data['user_id'] = $user_id;
-
+  $data['id'] = $id;
 	//Required Fields
-	$field_array = array('body', 'category');
+	$field_array = array('body', 'category', 'id');
 
 	if($validate->isRequired($field_array)){
 		//Register User
-		if($task->create($data)){
-			redirect('index.php', 'Your task has been added', 'success');
+		if($task->update($data)){
+			redirect('index.php', 'Your task has been updated', 'success');
 		} else {
-			redirect('topic.php?id='.$task_id, 'Something went wrong with your post', 'error');
+			redirect('topic.php?id='.$task_id, 'Something went wrong with your task', 'error');
 		}
 	} else {
-		redirect('create.php', 'Please fill in all required fields', 'error');
+		redirect('edit.php', 'Please fill in all required fields', 'error');
 	}
 }
 

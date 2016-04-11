@@ -152,5 +152,24 @@ public function create($data){
 	}
 }
 
+public function update($data)
+{
+	$this->db->query("UPDATE tasks SET category_id = :category_id,
+										user_id = :user_id,
+										task = :task
+										WHERE id = :id");
+	//Bind Values
+	$this->db->bind(':category_id', $data['category_id']);
+	$this->db->bind(':user_id', $data['user_id']);
+	$this->db->bind(':task', $data['body']);
+	$this->db->bind(':id',$data['id']);
+	//Execute
+	if($this->db->execute()){
+		return true;
+	} else {
+		return false;
+	}
+}
+
 }
 ?>
