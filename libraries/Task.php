@@ -22,10 +22,17 @@ class Task{
 							");
 
   // create table categories (id int primary key auto_increment, category varchar(20));
+	// insert into categories (category) values ('business'),('vacation'),('family');
+	// insert into categories (category) values ('home'),('work');
   // create table tasks (id int primary key auto_increment, category_id int, task text, user_id int);
 		//Assign Result Set
 		$results = $this->db->resultset();
-
+		// echo "here";
+		// foreach($results  as $task){
+		// 	echo $task->task;
+		// }
+		// echo "string";
+		// exit();
 		return $results;
 	  }
 
@@ -115,6 +122,26 @@ class Task{
 
 		return $row;
 	}
+
+	/*
+ * Create Task
+*/
+public function create($data){
+	//Insert Query
+	  // create table tasks (id int primary key auto_increment, category_id int, task text, user_id int);
+	$this->db->query("INSERT INTO tasks (category_id, user_id, task)
+										VALUES (:category_id, :user_id, :task)");
+	//Bind Values
+	$this->db->bind(':category_id', $data['category_id']);
+	$this->db->bind(':user_id', $data['user_id']);
+	$this->db->bind(':task', $data['body']);
+	//Execute
+	if($this->db->execute()){
+		return true;
+	} else {
+		return false;
+	}
+}
 
 }
 ?>

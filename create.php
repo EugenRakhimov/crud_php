@@ -1,29 +1,29 @@
 <?php require('core/init.php'); ?>
 
 <?php
-//Create Topic Object
-$topic = new Topic;
+//Create Task Object
+$task = new Task;
 
 if(isset($_POST['do_create'])){
 	//Create Validator Object
 	$validate = new Validator;
 
 	//Create Data Array
-	$data = array();	
+	$data = array();
 	$data['body'] = $_POST['body'];
 	$data['category_id'] = $_POST['category'];
 	$data['user_id'] = getUser()['user_id'];
 	$data['last_activity'] = date("Y-m-d H:i:s");
 
 	//Required Fields
-	$field_array = array('title', 'body', 'category');
+	$field_array = array('body', 'category');
 
 	if($validate->isRequired($field_array)){
 		//Register User
-		if($topic->create($data)){
-			redirect('index.php', 'Your topic has been posted', 'success');
+		if($task->create($data)){
+			redirect('index.php', 'Your task has been added', 'success');
 		} else {
-			redirect('topic.php?id='.$topic_id, 'Something went wrong with your post', 'error');
+			redirect('topic.php?id='.$task_id, 'Something went wrong with your post', 'error');
 		}
 	} else {
 		redirect('create.php', 'Please fill in all required fields', 'error');
