@@ -8,6 +8,8 @@ class Task{
 	 */
 	 public function __construct(){
 		$this->db = new Database;
+		$this->category_id = 1;
+		$this->task = "";
 	 }
 
 	 /*
@@ -25,6 +27,7 @@ class Task{
 	// insert into categories (category) values ('business'),('vacation'),('family');
 	// insert into categories (category) values ('home'),('work');
   // create table tasks (id int primary key auto_increment, category_id int, task text, user_id int);
+	// alter table tasks add time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 		//Assign Result Set
 		$results = $this->db->resultset();
 		// echo "here";
@@ -39,14 +42,15 @@ class Task{
 	  /*
 	 * Get Tasks By Category
 	 */
-	public function getByCategory($category_id){
+	public function getByCategory($category_id, $user_id){
 		$this->db->query("SELECT tasks.*, categories.*, users.username FROM tasks
 						INNER JOIN categories
 						ON tasks.category_id = categories.id
 						INNER JOIN users
 						ON tasks.user_id=users.id
 						WHERE tasks.category_id = :category_id
-		");
+						and tasks.user_id = :user_id");
+						$this->db->bind(':user_id', $user_id);
 		$this->db->bind(':category_id', $category_id);
 
 		//Assign Result Set
@@ -77,9 +81,11 @@ class Task{
 	  /*
 	 * Get Total # of Tasks
 	 */
-	public function getTotalTasks(){
-		$this->db->query('SELECT * FROM tasks');
+	public function getTotalTasks($user_id){
+		$this->db->query('SELECT * FROM tasks WHERE user_id = :user_id');
+		$this->db->bind(':user_id', $user_id);
 		$rows = $this->db->resultset();
+
 		return $this->db->rowCount();
 	}
 

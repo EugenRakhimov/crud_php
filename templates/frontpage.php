@@ -22,6 +22,5 @@
     </form>
     <?php endif; ?>
   <div class="clearfix"></div>
-  <hr>
-  <h3> Tasklist statistic</h3>
+
 <?php include 'includes/footer.php'; ?>

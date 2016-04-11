@@ -53,9 +53,9 @@ class User{
 		if(($this->db->rowCount() > 0)&&password_verify($password, $hash)){
 			$this->setUserData($row);
 			return true;
-		} else {
-			echo "test2";
-			exit();
+		}
+		else
+		{		
 			return false;
 		}
 	}
