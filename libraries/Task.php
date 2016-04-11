@@ -149,10 +149,15 @@ public function create($data){
 }
 public function tryExecute()
 {
-	if($this->db->execute()){
-		return true;
-	} else {
-		return false;
+	try {
+		if($this->db->execute()){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	catch (Exception $e) {
+    echo 'Exception: ',  $e->getMessage(), "\n";
 	}
 }
 
