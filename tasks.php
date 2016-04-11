@@ -16,17 +16,17 @@ $user_id=set_current_user();
 //Get Template & Assign Vars
 $template = new Template('templates/tasks.php');
 
-//Assign Template Variables
-if(isset($category)){
-	$template->tasks = $task->getByCategory($category, $user_id);
-	$template->title = 'Posts In "'.$task->getCategory($category)->name.'"';
-}
+
 
 //Check For User Filter
 if(isset($user_id)){
 	$template->tasks = $task->getByUser($user_id);
 	//$template->title = 'Posts By "'.$user->getUser($user_id)->username.'"';
-
+	//Assign Template Variables
+	if(isset($category)){
+		$template->tasks = $task->getByCategory($category, $user_id);
+		// $template->title = 'Posts In "'.$task->getCategory($category)->category.'"';
+	}
 }
 
 

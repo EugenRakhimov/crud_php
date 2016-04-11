@@ -10,7 +10,7 @@ $task ->getTask($id, $user_id);
 if(isset($_POST['do_delete'])){
 	if($task->delete($user_id))
   {
-    redirect('tasks.php', 'Your task has been updated', 'success');
+    redirect('tasks.php', 'Your task has been deleted', 'success');
   }
   else
   {

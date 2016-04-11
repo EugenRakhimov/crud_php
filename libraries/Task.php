@@ -26,7 +26,8 @@ class Task{
   // create table categories (id int primary key auto_increment, category varchar(20));
 	// insert into categories (category) values ('business'),('vacation'),('family');
 	// insert into categories (category) values ('home'),('work');
-  // create table tasks (id int primary key auto_increment, category_id int, task text, user_id int);
+  // create table tasks (id int primary key auto_increment, category_id int, task text, user_id int,
+// time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);
 	// alter table tasks add time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 		//Assign Result Set
 		$results = $this->db->resultset();
