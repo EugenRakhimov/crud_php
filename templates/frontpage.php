@@ -1,4 +1,9 @@
 <?php include 'includes/header.php'; ?>
+
+        <h2 class="pull-left">Welcome To Tasklist!</h2>
+        <h4 class="pull-right">A simple PHP Tasklist</h4>
+        <div class="clearfix"></div>
+        <hr>
   <?php if(isLoggedIn()) : ?>
       <div class="userdata">
       Welcome, <?php echo getUser()['username']; ?>
@@ -8,7 +13,7 @@
       <input type="submit" name="do_logout" class="btn btn-primary" value="Logout" />
     </form>
     <?php else : ?>
-    <h3>You have to login to be able to use system</h3>
+    <h3>You have to login to use system</h3>
     <form role="form" method="post" action="login.php">
     <div class="form-group">
       <label>Username</label>

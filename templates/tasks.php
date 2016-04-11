@@ -7,42 +7,44 @@
 <ul id="tasks">
 	<?php if($tasks) : ?>
 		<div class="row">
-			<table class="table">
+			<table class="table tablesorter"  id="myTable">
 				<thead>
-				<tr>
-					<th>Task</th>
-					<th>Time of enter</th>
-					<th>Category</th>
-					<th colspan="3"></th>
-				</tr>
-			</thead>
-				<?php foreach($tasks as $task) : ?>
 					<tr>
-          <td><?php echo $task->task; ?></td>
-          <td><?php echo $task->time; ?></td>
-          <td><a href="tasks.php?category=<?php echo urlFormat($task->category_id); ?>">
-            <?php echo $task->category; ?> </a></td>
-          <td>
-            <form action="/edit.php" method="post">
-							<input type="hidden" name="id" value="<?php echo $task->id; ?>" />
-              <input type="submit" class="btn btn-danger" value="Edit">
-                  <i class="fa fa-btn fa-trash"></i>
-              </input>
-            </form>
-          </td>
-          <td>
-            <form action="/delete.php" method="POST">
-              <input type="hidden" method="delete" name="do_delete"/>
-							<input type="hidden" name = "id" value="<?php echo $task->id; ?>" />
-              <button type="submit" class="btn btn-danger">
-                  <i class="fa fa-btn fa-trash"></i>Delete
-              </button>
-            </form>
-          </td>
-        </tr>
-				<?php endforeach ; ?>
-			</table>
-		</div>
+						<th>Task</th>
+						<th>Time of enter</th>
+						<th>Category</th>
+						<th colspan="3"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($tasks as $task) : ?>
+						<tr>
+	          <td><?php echo $task->task; ?></td>
+	          <td><?php echo $task->time; ?></td>
+	          <td><a href="tasks.php?category=<?php echo urlFormat($task->category_id); ?>">
+	            <?php echo $task->category; ?> </a></td>
+	          <td>
+	            <form action="/edit.php" method="post">
+								<input type="hidden" name="id" value="<?php echo $task->id; ?>" />
+	              <input type="submit" class="btn btn-danger" value="Edit">
+	                  <i class="fa fa-btn fa-trash"></i>
+	              </input>
+	            </form>
+	          </td>
+	          <td>
+	            <form action="/delete.php" method="POST">
+	              <input type="hidden" method="delete" name="do_delete"/>
+								<input type="hidden" name = "id" value="<?php echo $task->id; ?>" />
+	              <button type="submit" class="btn btn-danger">
+	                  <i class="fa fa-btn fa-trash"></i>Delete
+	              </button>
+	            </form>
+	          </td>
+	        </tr>
+					<?php endforeach ; ?>
+				</tbody>
+		</table>
+	</div>
 	<?php else : ?>
 		<p>No Tasks To Display</p>
 	<?php endif; ?>
