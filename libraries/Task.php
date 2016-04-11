@@ -145,6 +145,10 @@ public function create($data){
 	$this->db->bind(':user_id', $data['user_id']);
 	$this->db->bind(':task', $data['body']);
 	//Execute
+	return $this->tryExecute();
+}
+public function tryExecute()
+{
 	if($this->db->execute()){
 		return true;
 	} else {
@@ -164,11 +168,15 @@ public function update($data)
 	$this->db->bind(':task', $data['body']);
 	$this->db->bind(':id',$data['id']);
 	//Execute
-	if($this->db->execute()){
-		return true;
-	} else {
-		return false;
-	}
+	return $this->tryExecute();
+}
+
+public function delete($user_id)
+{
+	$this->db->query("DELETE from tasks WHERE id = :id and user_id = :user_id");
+	$this->db->bind(':id',$this->id);
+	$this->db->bind(':user_id', $user_id);
+	return $this->tryExecute();
 }
 
 }
