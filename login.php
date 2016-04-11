@@ -2,9 +2,9 @@
 <?php
   if (isset($_POST['do_login'])) {
     $username = $_POST['username'];
-    $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
     $user = new User;
-    if ($user->login($username, $password_hash)) {
+    if ($user->login($username, $password)) {
       redirect('index.php', 'You have been logged in', 'success');
     }
     else {

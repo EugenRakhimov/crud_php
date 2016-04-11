@@ -46,7 +46,7 @@
       <div class="col-md-8">
         <div class="main-col">
           <div class="block">
-            <h1 class="pull-left"><?php echo $title; ?></h1>
+            <h1 class="pull-left">Welcome To Tasklist!</h1>
 						<h4 class="pull-right">A simple PHP Tasklist</h4>
 						<div class="clearfix"></div>
 						<hr>

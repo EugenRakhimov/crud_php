@@ -19,7 +19,7 @@ class User{
 			//Insert Query
 			$this->db->query('INSERT INTO users (username, password_hash)
 											VALUES (:username, :password_hash)');
-			
+
 			//Bind Values
 			$this->db->bind(':username', $data['username']);
 
@@ -37,23 +37,25 @@ class User{
   /*
 	 * User Login
 	 */
-	public function login($username, $password_hash){
+	public function login($username, $password){
+
 		$this->db->query("SELECT * FROM users
-									WHERE username = :username
-									AND password_hash = :password_hash
-		");
+									WHERE username = :username");
 
 		//Bind Values
 		$this->db->bind(':username', $username);
-		$this->db->bind(':password_hash', $password_hash);
 
 		$row = $this->db->single();
 
+		$hash = $row->password_hash;
+
 		//Check Rows
-		if($this->db->rowCount() > 0){
+		if(($this->db->rowCount() > 0)&&password_verify($password, $hash)){
 			$this->setUserData($row);
 			return true;
 		} else {
+			echo "test2";
+			exit();
 			return false;
 		}
 	}
