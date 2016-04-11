@@ -64,7 +64,7 @@ class User{
 	 * Set User Data
 	 */
 	private function setUserData($row){
-		$_SESSION['is_logged_in'] = true;
+		$_SESSION['isLoggedIn'] = true;
 		$_SESSION['user_id'] = $row->id;
 		$_SESSION['username'] = $row->username;
 	}
@@ -73,10 +73,10 @@ class User{
 	 * User Logout
 	*/
 	public function logout(){
-		unset($_SESSION['is_logged_in']);
+		unset($_SESSION['isLoggedIn']);
 		unset($_SESSION['user_id']);
 		unset($_SESSION['username']);
-		unset($_SESSION['name']);
+		session_destroy();
 		return true;
 	}
 
