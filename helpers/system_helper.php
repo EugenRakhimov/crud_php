@@ -72,4 +72,16 @@ function displayMessage(){
 	}
 }
 
+function set_current_user()
+{
+  //Get user From URL
+  if(isLoggedIn()) {
+  	$user_id = getUser()['user_id'];
+    return $user_id;
+  }
+  else {
+  	redirect('index.php','You need to log in first','error');
+  }
+}
+
 ?>

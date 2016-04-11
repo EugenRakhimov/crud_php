@@ -7,6 +7,7 @@
     <?php endforeach; ?>
   </select>
   </div>
+  <div> <?php echo $task->task; ?> </div>
     <div class="form-group">
       <label>Task</label>
       <textarea id="body" rows="10" cols="80" class="form-control" name="body" value="<?php echo $task->task; ?>"></textarea>

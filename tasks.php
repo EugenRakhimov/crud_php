@@ -8,13 +8,7 @@ $task = new Task;
 //Get category From URL
 $category = isset($_GET['category']) ? $_GET['category'] : null;
 
-//Get user From URL
-if(isLoggedIn()) {
-	$user_id = getUser()['user_id'];
-}
-else {
-	redirect('index.php','You need to log in first','error');
-}
+$user_id=set_current_user();
 
 
 
@@ -30,7 +24,7 @@ if(isset($category)){
 
 //Check For User Filter
 if(isset($user_id)){
-	$template->tasks = $task->getByUser($user_id, $user_id);
+	$template->tasks = $task->getByUser($user_id);
 	//$template->title = 'Posts By "'.$user->getUser($user_id)->username.'"';
 
 }

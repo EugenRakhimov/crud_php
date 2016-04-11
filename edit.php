@@ -4,7 +4,12 @@
 //Create Task Object
 $task = new Task;
 $user_id = set_current_user();
-if(isset($_POST['do_create'])){
+$id = $_POST['id'];
+$task ->getTask($id, $user_id);
+
+
+
+if(isset($_POST['do_update'])){
 	//Create Validator Object
 	$validate = new Validator;
 
@@ -30,9 +35,10 @@ if(isset($_POST['do_create'])){
 }
 
 //Get Template & Assign Vars
-$template = new Template('templates/create.php');
+$template = new Template('templates/edit.php');
+
 
 //Assign Vars
-
+$template->task = $task;
 //Display template
 echo $template;

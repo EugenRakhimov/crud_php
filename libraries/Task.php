@@ -63,7 +63,7 @@ class Task{
 	 * Get Tasks By Username
 	 */
 	public function getByUser($user_id){
-		$this->db->query("SELECT tasks.*, categories.*, users.username FROM tasks
+		$this->db->query("SELECT tasks.*, categories.category, users.username FROM tasks
 						INNER JOIN categories
 						ON tasks.category_id = categories.id
 						INNER JOIN users
@@ -115,17 +115,20 @@ class Task{
 	/*
 	 * Get Task By ID
 	 */
-	public function getTask($id){
-		$this->db->query("SELECT tasks.*, users.username, users.name FROM tasks
+	public function getTask($id, $user_id){
+		$this->db->query("SELECT tasks.*, users.username FROM tasks
 						INNER JOIN users
 						ON tasks.user_id = users.id
-						WHERE tasks.id = :id
-		");
+						WHERE tasks.id = :id and
+						user_id = :user_id");
+		$this->db->bind(':user_id', $user_id);
 		$this->db->bind(':id', $id);
 
 		//Assign Row
 		$row = $this->db->single();
-
+		$this->category_id = $row->category_id;
+		$this->task = $row->task;
+		$this->id = $id;
 		return $row;
 	}
 
